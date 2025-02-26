@@ -1,9 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/home";
+import Login from "./pages/login";
 
 function App() {
-
-  return 'Bonjour la bank'
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/login" element={<Login/>} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
