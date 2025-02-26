@@ -15,4 +15,11 @@ body {
 
 .main {
   flex: 1;
+  display: flex; 
+  justify-content: center; 
+  height: 87vh; 
+}
+
+.bg-dark {
+  background-color: #12002b;
 }
