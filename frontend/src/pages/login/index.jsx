@@ -2,7 +2,7 @@ import Header from "@comp/layout/header";
 import Footer from "@comp/layout/footer";
 import SignIn from "@comp/page/login/signin";
 
-function login() {
+function Login() {
   return (
     <>
       <Header />
@@ -12,4 +12,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;
