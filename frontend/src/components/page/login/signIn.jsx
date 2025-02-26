@@ -2,7 +2,7 @@ import "./styles.css";
 
 function SignIn() {
   return (
-    <main className="main bg-dark">
+    <main className="main2 bg-dark">
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon" aria-hidden="true"></i>
         <h1>Sign In</h1>

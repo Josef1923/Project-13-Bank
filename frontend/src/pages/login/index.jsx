@@ -6,7 +6,9 @@ function Login() {
   return (
     <>
       <Header />
+      <main className="main bg-dark">
         <SignIn />
+        </main>
       <Footer />
     </>
   );

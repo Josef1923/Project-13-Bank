@@ -15,9 +15,7 @@ body {
 
 .main {
   flex: 1;
-  display: flex; 
-  justify-content: center; 
-  height: 87vh; 
+  height: 85vh; 
 }
 
 .bg-dark {
