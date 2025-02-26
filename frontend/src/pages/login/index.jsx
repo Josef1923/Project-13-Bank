@@ -1,5 +1,5 @@
-import Header from "../../components/layout/header";
-import Footer from "../../components/layout/footer";
+import Header from "@comp/layout/header";
+import Footer from "@comp/layout/footer";
 
 function login() {
   return (

@@ -1,12 +1,14 @@
-import Footer from "../../components/layout/footer";
-import Header from "../../components/layout/header";
-import Hero from "../../components/page/home/hero";
+import Footer from "@comp/layout/footer";
+import Header from "@comp/layout/header";
+import Hero from "@comp/page/home/hero";
 
 function Home() {
   return (
     <>
       <Header />
+      <>
       <Hero />
+      </>
       <Footer />
     </>
   );

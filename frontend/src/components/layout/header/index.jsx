@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import argentBankLogo from '../../../assets/argentBankLogo.png';
+import argentBankLogo from '@assets/argentBankLogo.png';
 import './styles.css'
 
 function Header() {

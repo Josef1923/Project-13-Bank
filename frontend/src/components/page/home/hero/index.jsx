@@ -1,10 +1,10 @@
-import bankImage from '../../../../assets/bank-tree.jpeg';
+import bankImage from '@assets/bank-tree.jpeg';
 import './styles.css';
 
 function Hero() {
     return (
-      <div className="hero">
-        <section className="hero-content" src={bankImage}>
+      <div className="hero" style={{ backgroundImage: `url(${bankImage})` }}>
+        <section className="hero-content">
           <h2 className="sr-only">Promoted Content</h2>
           <p className="subtitle">No fees.</p>
           <p className="subtitle">No minimum deposit.</p>
