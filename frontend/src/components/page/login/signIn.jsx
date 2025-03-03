@@ -10,8 +10,28 @@ function SignIn() {
   //Fonction pour envoyer les id 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
+    
+    try {
+      //fetch URL serveur, le port 3001 est celui du serveur (server.js)
+      const response = await fetch("http://localhost:3001/api/v1/user/login", {
+        method: "POST",
+        //on indique que le contenu est en json
+        headers: {
+          "Content-Type": "application/json",
+        },  
+        //conversion des données à envoyé en json
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log("gg well play connexion ok:", data);
+      } else {
+        console.log("connexion failed");
+      }
+    } catch (err) {
+      console.error("connexion failed", err);
+    }
   };
 
   return (

@@ -21,7 +21,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// Handle custom routes
+// Handle custom routes explique que toute les routes qui commence par /api/v1/user seront géré par le fichier userRoutes.js
 app.use('/api/v1/user', require('./routes/userRoutes'))
 
 // API Documentation
