@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
 function SignIn() {
@@ -6,6 +7,7 @@ function SignIn() {
   //UseState pour les id
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   //Fonction pour envoyer les id 
   const handleSubmit = async (e) => {
@@ -26,6 +28,10 @@ function SignIn() {
       const data = await response.json();
       if (response.ok) {
         console.log("gg well play connexion ok:", data);
+        //on stock le token dans le local storage (setItme enregistre la donnée)
+        localStorage.setItem("token", data.body.token);
+        //puis on navigue vers la page user
+        navigate("/user");
       } else {
         console.log("connexion failed");
       }
