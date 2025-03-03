@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import "./styles.css";
 
-function WelcomeMessage({ userName = "Tony Jarvis" }) {
+function WelcomeMessage({ userName }) {
 
   return (
     <div className="header">
