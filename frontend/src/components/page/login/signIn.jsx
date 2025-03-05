@@ -1,58 +1,23 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import  Authorization from "../../../services/authorization";
 import "./styles.css";
 
 function SignIn() {
-
-  //UseState pour les id
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-
-  //Fonction pour envoyer les id 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    try {
-      //fetch URL serveur, le port 3001 est celui du serveur (server.js)
-      const response = await fetch("http://localhost:3001/api/v1/user/login", {
-        method: "POST",
-        //on indique que le contenu est en json
-        headers: {
-          "Content-Type": "application/json",
-        },  
-        //conversion des données à envoyé en json
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        console.log("gg well play connexion ok:", data);
-        //on stock le token dans le local storage (setItme enregistre la donnée)
-        localStorage.setItem("token", data.body.token);
-        //puis on navigue vers la page user
-        navigate("/user");
-      } else {
-        console.log("connexion failed");
-      }
-    } catch (err) {
-      console.error("connexion failed", err);
-    }
-  };
+  //On récupère les données de la fonction Authorization
+  const { email, setEmail, password, setPassword, handleSubmit } = Authorization();
 
   return (
     <main className="main2 bg-dark">
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon" aria-hidden="true"></i>
         <h1>Sign In</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>{/*On soumet le formulaire à la fonction handleSubmit*/}
           <div className="input-wrapper">
             {/*
             L'API attend un email mais je laisse Username pour correspondre au design
             mise à jour de l'email apres chaque frappa
             */}
             <input type="email" id="email"
-              value={email}
+              value={email} //On récupère la valeur de l'email
               onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className="input-wrapper">

@@ -8,7 +8,7 @@ function Login() {
       <Header />
       <main className="main bg-dark">
         <SignIn />
-        </main>
+      </main>
       <Footer />
     </>
   );
