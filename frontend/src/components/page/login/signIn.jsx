@@ -14,7 +14,7 @@ function SignIn() {
           <div className="input-wrapper">
             {/*
             L'API attend un email mais je laisse Username pour correspondre au design
-            mise à jour de l'email apres chaque frappa
+            mise à jour de l'email apres chaque frappe
             */}
             <input type="email" id="email"
               value={email} //On récupère la valeur de l'email

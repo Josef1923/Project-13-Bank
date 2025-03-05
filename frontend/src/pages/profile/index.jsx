@@ -1,7 +1,7 @@
 import Header from "@comp/layout/header";
 import Footer from "@comp/layout/footer";
-import WelcomeMessage from "@comp/page/userDashboard/welcome";
-import Notification from "@comp/page/userDashboard/notification";
+import WelcomeMessage from "@comp/page/dashboard/welcome";
+import Notification from "@comp/page/dashboard/notification";
 import { useEffect, useState } from "react";
 import fetchUser from "../../services/fetchUser";
 
