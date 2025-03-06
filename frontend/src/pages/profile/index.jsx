@@ -20,7 +20,7 @@ function UserDashboard() {
       <main className="main bg-dark">
         {/* Vérifier si les données sont disponibles pour WelcomeMessage */}
         {userData.firstName && userData.lastName ? (
-          <WelcomeMessage userName={`${userData.firstName} ${userData.lastName}`} />
+          <WelcomeMessage firstName={userData.firstName} lastName={userData.lastName} />
         ) : (
           <p>Chargement des données...</p> // Message de chargement si les données ne sont pas disponibles
         )}

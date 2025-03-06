@@ -1,17 +1,19 @@
 import PropTypes from "prop-types";
 import "./styles.css";
 
-function WelcomeMessage({ userName }) {
+function WelcomeMessage({ firstName, lastName }) {
 
   return (
     <div className="header">
-      <h1>Welcome back<br/>{userName}!</h1>
+      <h1>Welcome back<br/>{firstName} {lastName}!</h1>
       <button className="edit-button">Edit Name</button>
     </div>
   );
 }
 
 WelcomeMessage.propTypes = {
-  userName: PropTypes.string
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
 };
+
 export default WelcomeMessage;
