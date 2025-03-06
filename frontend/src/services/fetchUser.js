@@ -1,3 +1,4 @@
+//fontion asynchrone qui permet de récupérer les données avec setuserData et navigate pour la redirection
 async function FetchUser(setUserData, navigate) {
   const token = localStorage.getItem("token");
 
