@@ -1,27 +1,26 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import argentBankLogo from '@assets/argentBankLogo.png';
 import FetchUser from '../../../services/fetchUser';
 import './styles.css';
+import { useDispatch, useSelector } from 'react-redux';
+import  { logout } from '../../../store/slice';
 
 function Header() {
 
-    const [isLogged, setIsLogged] = useState(false);
-    const [userData, setUserData] = useState('');
+    const dispatch = useDispatch();
+    const userData = useSelector((state) => state.user.user);
+    const token = useSelector((state) => state.user.token);
 
     //UseEffect qui s'execute une seule fois au chargement de la page
-    useEffect(() => {
-        const token = localStorage.getItem('token');        
+    useEffect(() => {       
         if (token) {
-            setIsLogged(true);
-            FetchUser(setUserData); // On récupère TOUT userData
+            FetchUser(dispatch); // On récupère TOUT userData
         }
-    }, []);
+    }, [token, dispatch]); // Exécuter si token ou dispatch (bonne pratique)
 
-    function logout() {
-        localStorage.removeItem('token');
-        setIsLogged(false);
-        setUserData(''); 
+    function signout() {
+        dispatch(logout());
     }
 
     return (
@@ -30,12 +29,12 @@ function Header() {
                 <img className="main-nav-logo-image" src={argentBankLogo} alt="Argent Bank Logo" />
             </Link>
             <div>
-                {isLogged ? (
+                {token ? (
                     <>
                         <Link className="main-nav-item" to="/profile">
                             <i className="fa fa-user-circle"></i> {userData.firstName}
                         </Link>
-                        <Link className="main-nav-item" to="/" onClick={logout}>
+                        <Link className="main-nav-item" to="/" onClick={signout}>
                             <i className="fa fa-sign-out"></i> Sign Out
                         </Link>
                     </>

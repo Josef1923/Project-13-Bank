@@ -1,9 +1,10 @@
-//fontion asynchrone qui permet de récupérer les données avec setuserData et navigate pour la redirection
-async function FetchUser(setUserData, navigate) {
+import { setUserData } from "../store/slice"; // Import Redux action
+
+async function FetchUser(dispatch, navigate) {
   const token = localStorage.getItem("token");
 
   if (!token) {
-    navigate("/");
+    navigate("/"); // Redirige vers la page d'accueil si pas de token
     return;
   }
 
@@ -12,13 +13,14 @@ async function FetchUser(setUserData, navigate) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // On envoie le token
+        Authorization: `Bearer ${token}`, // Envoi du token
       },
     });
 
     const data = await response.json();
+
     if (response.ok) {
-      setUserData(data.body);
+      dispatch(setUserData(data.body)); // Stocke les données utilisateur dans Redux
     } else {
       console.log("Aucune donnée utilisateur trouvée");
     }

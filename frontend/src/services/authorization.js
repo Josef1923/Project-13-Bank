@@ -1,42 +1,47 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { setToken } from "../store/slice";
+import { useDispatch } from "react-redux";
+import FetchUser from "../services/fetchUser";
 
 function Authorization() {
-
-    // état pour l'email et le mot de passe
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate(); //hook de navigation pour rediriger après la connexion
-    //Fonction pour envoyer les id 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            //requête pour se connecter
             const response = await fetch("http://localhost:3001/api/v1/user/login", {
                 method: "POST",
-                //on indique que le contenu est en json
                 headers: {
                     "Content-Type": "application/json",
                 },
-                //conversion des données à envoyé en json
-                body: JSON.stringify({ email, password }), //objet avec les données à envoyer
+                body: JSON.stringify({ email, password }),
             });
 
             const data = await response.json();
+            console.log("Connexion réussie :", data);
+
             if (response.ok) {
-                console.log("gg well play connexion ok:", data);
-                //on stock le token dans le local storage (setItme enregistre la donnée)
-                localStorage.setItem("token", data.body.token);
-                //puis on navigue vers la page user
-                navigate("/profile");
+                const token = data.body.token;
+                localStorage.setItem("token", token);
+                dispatch(setToken(token)); // Stocke le token dans Redux
+
+                // Récupération des données utilisateur après connexion
+                FetchUser(dispatch);
+
+                navigate("/profile"); // Redirection vers le profil
             } else {
-                console.log("connexion failed");
+                console.log("Connexion échouée");
             }
         } catch (err) {
-            console.error("connexion failed", err);
+            console.error("Erreur de connexion", err);
         }
-    }
+    };
+
     return { email, password, setEmail, setPassword, handleSubmit };
 }
 

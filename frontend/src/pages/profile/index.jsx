@@ -2,31 +2,33 @@ import Header from "@comp/layout/header";
 import Footer from "@comp/layout/footer";
 import WelcomeMessage from "@comp/page/dashboard/welcome";
 import Notification from "@comp/page/dashboard/notification";
-import { useEffect, useState } from "react";
-import fetchUser from "../../services/fetchUser";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import FetchUser from "../../services/fetchUser";
 
 function UserDashboard() {
-  const [userData, setUserData] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user); // Récupération de l'utilisateur depuis Redux
 
-  //utilisation de useEffect pour récupérer les données utilisateur
   useEffect(() => {
-    fetchUser(setUserData);//appel de fetchUser
-  }
-  , []); //Tableau de dépendances qui éxécute le useEffect une seule fois au chargement
+    FetchUser(dispatch, navigate); // Récupération des données utilisateur
+  }, [dispatch, navigate]); // Exécuter si dispatch ou navigate change
 
   return (
     <>
       <Header />
       <main className="main bg-dark">
         {/* Vérifier si les données sont disponibles pour WelcomeMessage */}
-        {userData.firstName && userData.lastName ? (
-          <WelcomeMessage firstName={userData.firstName} lastName={userData.lastName} />
+        {user.firstName && user.lastName ? (
+          <WelcomeMessage firstName={user.firstName} lastName={user.lastName} />
         ) : (
           <p>Chargement des données...</p> // Message de chargement si les données ne sont pas disponibles
         )}
-       <h2 className="sr-only">Accounts</h2>
+        <h2 className="sr-only">Accounts</h2>
 
-       {/*Boucle pour afficher les notifications*/}
+        {/* Boucle pour afficher les notifications */}
         <Notification />
         <Notification />
         <Notification />

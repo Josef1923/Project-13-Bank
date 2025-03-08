@@ -16,6 +16,7 @@ function SignIn() {
             L'API attend un email mais je laisse Username pour correspondre au design
             mise à jour de l'email apres chaque frappe
             */}
+            <label htmlFor="email">Username</label>
             <input type="email" id="email"
               value={email} //On récupère la valeur de l'email
               onChange={(e) => setEmail(e.target.value)} />
