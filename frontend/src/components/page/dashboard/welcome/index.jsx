@@ -1,19 +1,16 @@
-import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 import "./styles.css";
 
-function WelcomeMessage({ firstName, lastName }) {
+function WelcomeMessage() {
+
+  const user = useSelector((state) => state.user.user);
 
   return (
     <div className="header">
-      <h1>Welcome back<br/>{firstName} {lastName}!</h1>
+      <h1>Welcome back<br/>{user.firstName} {user.lastName}!</h1>
       <button className="edit-button">Edit Name</button>
     </div>
   );
 }
-
-WelcomeMessage.propTypes = {
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
-};
 
 export default WelcomeMessage;

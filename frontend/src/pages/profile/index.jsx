@@ -10,10 +10,10 @@ import FetchUser from "../../services/fetchUser";
 function UserDashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user); // Récupération de l'utilisateur depuis Redux
+  const user = useSelector((state) => state.user.user); // Récupération de l'utilisateur depuis Redux
 
   useEffect(() => {
-    FetchUser(dispatch, navigate); // Récupération des données utilisateur
+    FetchUser(dispatch); // Récupération des données utilisateur
   }, [dispatch, navigate]); // Exécuter si dispatch ou navigate change
 
   return (
