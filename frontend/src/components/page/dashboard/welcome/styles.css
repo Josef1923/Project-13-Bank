@@ -1,14 +1,32 @@
 .header {
-    color: white;
-    margin-bottom: 2rem;    
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.edit-button {
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+  width: 100px;
+}
+
+.inputs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  height: 40px;
+
+  input {
+    text-indent: 10px;
   }
-  
-  .edit-button {
-    border-color: #00bc77;
-    background-color: #00bc77;
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
+}
+
+.editButtons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
