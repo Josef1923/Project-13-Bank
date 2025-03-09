@@ -19,7 +19,9 @@ function SignIn() {
             <label htmlFor="email">Username</label>
             <input type="email" id="email"
               value={email} //On récupère la valeur de l'email
-              onChange={(e) => setEmail(e.target.value)} />
+              onChange={(e) => setEmail(e.target.value)} 
+              autoComplete="username"
+              />
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
