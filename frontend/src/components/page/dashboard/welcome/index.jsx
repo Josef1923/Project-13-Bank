@@ -13,16 +13,22 @@ function WelcomeMessage() {
   const [newFirstName, setNewFirstName] = useState(user.firstName);
   const [newLastName, setNewLastName] = useState(user.lastName);
 
-  const handleEdit = () => {
+  // permet de passer en mode édition
+  function handleEdit() {
     setIsEditing(true);
   };
 
-  const handleSave = async () => {
-    const updateUserInformation = await update(newFirstName, newLastName);
+  // permet de sauvegarder les modifications
+  async function handleSave() {
+    const updateUserInformation = await update(newFirstName, newLastName); // Attend la fin d'update
 
-    if (updateUserInformation) {
-      dispatch(setUserData(updateUserInformation));
+    if (!updateUserInformation) {
+      console.log("Erreur de modification");
+      return;
     }
+
+    dispatch(setUserData(updateUserInformation)); //On met à jour les données dans redux
+    setIsEditing(false); // on repasse en mode normal
   }
 
   return (
