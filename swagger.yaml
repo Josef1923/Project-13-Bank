@@ -70,6 +70,7 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+          type: string
       produces:
         - application/json
       responses:
@@ -93,6 +94,7 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+          type: string
         - in: body
           name: body
           description: Update user profile attributes
@@ -108,6 +110,36 @@ paths:
             $ref: '#/definitions/ApiResponse'
         '400':
           description: Invalid Fields
+        '500':
+          description: Internal Server Error
+#phase 2
+  /transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions
+      summary: User monthly transactions
+      description: API for transactions
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Get user monthly tranbsactions successfully
+          schema:
+            $ref: '#/definitions/Transactions'
+        '400':
+          description: Invalid request parameters
+        '401':
+          description: Unauthorized - Invalid or missing JWT token
+        '404':
+          description: No transactions found for the current month
         '500':
           description: Internal Server Error
 securityDefinitions:
@@ -164,81 +196,29 @@ definitions:
         type: string
       lastName:
         type: string
-
-
-# phase 2 : Transactions
-paths:
-/user/transactions:
-  get:
-    security:
-      - Bearer: []
-    tags:
-      - Transaction Module
-    summary: liste des transactions du mois
-    description : API to get all transactions of the month
-    parameters:
-      - in: header
-        name: Authorization
-        description: Attach Bearer JWT token
-        required: true
-    produces:
-      - application/json
-    responses:
-      '200':
-        description: Transactions found
-        schema:
-          $ref: '#/definitions/ApiResponse'
-      '400':
-        description: Invalid Fields
-      '500':
-        description: Internal Server Error
-/user/transactions/{id}:
-  get:
-    security:
-      - Bearer: []
-    tags:
-      - Transaction Module
-    summary: View transaction details
-    description : API to get transaction details
-    parameters:
-      - in: path
-        name: id
-        description: Transaction ID
-        required: true
+#phase2
+  Transactions:
+    type: array
+    items:
+      $ref: '#/definitions/Transaction'
+      
+  Transaction:
+    type: object
+    properties:
+      id:
         type: string
-      - in: header
-        name: Authorization
-        description: Attach Bearer JWT token
-        required: true
-    responses:
-      '200':
-        description: Transaction details retrieved successfully
-        schema:
-          $ref: '#/definitions/ApiResponse'
-      '400':
-        description: Invalid Fields
-      '500':
-        description: Internal Server Error
-  PUT:
-    security:
-      - Bearer: []
-    tags:
-      - Transaction Module
-    summary: Update transaction details
-    description : API to update transaction details
-    parameters:
-      - in: header
-        name: Authorization
-        description: Attach Bearer JWT token
-        required: true
-    produces:
-      - application/json
-    responses:
-      '200':
-        description: Transaction details updated successfully
-        schema:
-          $ref: '#/definitions/ApiResponse'
-      '400':
-        description: Invalid Fields
-      '500':
-        description: Internal Server Error
+      date:
+        type: string
+        format: date-time
+      description:
+        type: string
+      amount:
+        type: number
+      balance:
+        type: number
+      type:
+        type: string
+      category:
+        type: string
+      notes:
+        type: string
