@@ -5,7 +5,7 @@ import Transaction from "@comp/page/dashboard/transactions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import FetchUser from "../../services/fetchUser";
+import fetchUser from "../../services/fetchUser";
 
 function UserDashboard() {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ function UserDashboard() {
   const user = useSelector((state) => state.user.user); // Récupération de l'utilisateur depuis Redux
 
   useEffect(() => {
-    FetchUser(dispatch); // Récupération des données utilisateur
+    fetchUser(dispatch); // Récupération des données utilisateur
   }, [dispatch, navigate]); // Exécuter si dispatch ou navigate change
 
   const txMock = [

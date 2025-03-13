@@ -1,10 +1,8 @@
 import { setUserData } from "../store/slice"; // Import Redux action
 
-async function FetchUser(dispatch, navigate) {
-  const token = localStorage.getItem("token");
+async function fetchUser(dispatch, token) {
 
   if (!token) {
-    navigate("/"); // Redirige vers la page d'accueil si pas de token
     return;
   }
 
@@ -29,4 +27,4 @@ async function FetchUser(dispatch, navigate) {
   }
 };
 
-export default FetchUser;
+export default fetchUser;

@@ -1,6 +1,4 @@
-async function update(newFirstName, newLastName) {
-
-    const token = localStorage.getItem("token");
+async function update(newFirstName, newLastName, token) {
 
     try {
         const response = await fetch("http://localhost:3001/api/v1/user/profile", {

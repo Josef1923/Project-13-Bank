@@ -6,6 +6,7 @@ import "./styles.css";
 
 function WelcomeMessage() {
 
+  const token = useSelector((state) => state.user.token);
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
@@ -20,7 +21,7 @@ function WelcomeMessage() {
 
   // permet de sauvegarder les modifications
   async function handleSave() {
-    const updateUserInformation = await update(newFirstName, newLastName); // Attend la fin d'update
+    const updateUserInformation = await update(newFirstName, newLastName, token); // Attend la fin d'update
 
     if (!updateUserInformation) {
       console.log("Erreur de modification");

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setToken } from "../store/slice";
 import { useDispatch } from "react-redux";
-import FetchUser from "../services/fetchUser";
+import fetchUser from "../services/fetchUser";
 
 function Authorization() {
     const [email, setEmail] = useState("");
@@ -27,12 +27,9 @@ function Authorization() {
 
             if (response.ok) {
                 const token = data.body.token;
-                localStorage.setItem("token", token);
-                dispatch(setToken(token)); // Stocke le token dans Redux
-
+                dispatch(setToken(token)); // Stock le token dans Redux
                 // Récupération des données utilisateur après connexion
-                FetchUser(dispatch);
-
+                await fetchUser(dispatch, token);
                 navigate("/profile"); // Redirection vers le profil
             } else {
                 console.log("Connexion échouée");
