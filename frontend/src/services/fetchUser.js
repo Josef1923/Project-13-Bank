@@ -7,7 +7,7 @@ async function fetchUser(dispatch, token) {
   }
 
   try {
-    const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/user/profile`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
