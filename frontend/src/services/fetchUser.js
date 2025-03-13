@@ -20,10 +20,10 @@ async function fetchUser(dispatch, token) {
     if (response.ok) {
       dispatch(setUserData(data.body)); // Stocke les données utilisateur dans Redux
     } else {
-      console.log("Aucune donnée utilisateur trouvée");
+      alert("Aucune donnée utilisateur trouvée");
     }
   } catch (err) {
-    console.error("Erreur lors de la récupération des données utilisateur", err);
+    alert("Erreur lors de la récupération des données utilisateur" + err);
   }
 };
 

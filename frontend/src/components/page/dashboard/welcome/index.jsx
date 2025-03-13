@@ -24,7 +24,7 @@ function WelcomeMessage() {
     const updateUserInformation = await update(newFirstName, newLastName, token); // Attend la fin d'update
 
     if (!updateUserInformation) {
-      console.log("Erreur de modification");
+      alert("Erreur de modification");
       return;
     }
 

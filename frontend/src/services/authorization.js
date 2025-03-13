@@ -23,7 +23,6 @@ function Authorization() {
             });
 
             const data = await response.json();
-            console.log("Connexion réussie :", data);
 
             if (response.ok) {
                 const token = data.body.token;
@@ -32,10 +31,10 @@ function Authorization() {
                 await fetchUser(dispatch, token);
                 navigate("/profile"); // Redirection vers le profil
             } else {
-                console.log("Connexion échouée");
+                alert("Connexion échouée");
             }
         } catch (err) {
-            console.error("Erreur de connexion", err);
+            alert("Erreur de connexion" + err);
         }
     };
 

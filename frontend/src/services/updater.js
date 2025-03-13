@@ -15,11 +15,11 @@ async function update(newFirstName, newLastName, token) {
         if (response.ok) {
             return data.body; //retourne les données de l'utilisateur
         } else {
-            console.log("Modification échouée");
+            alert("Modification échouée");
             return null;
         }
     } catch (err) {
-        console.error("Erreur de modification", err);
+        alert("Erreur de modification", err);
         return null;
     }
 }
