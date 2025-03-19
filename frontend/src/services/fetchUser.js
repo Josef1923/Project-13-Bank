@@ -3,7 +3,7 @@ import { setUserData } from "../store/slice"; // Import Redux action
 async function fetchUser(dispatch, token) {
 
   if (!token) {
-    alert("Aucun token trouvé");
+    console.log("Aucun token trouvé");
     return;
   }
 
@@ -21,10 +21,10 @@ async function fetchUser(dispatch, token) {
     if (response.ok) {
       dispatch(setUserData(data.body)); // Stocke les données utilisateur dans Redux
     } else {
-      alert("Aucune donnée utilisateur trouvée");
+      console.log("Aucune donnée utilisateur trouvée");
     }
   } catch (err) {
-    alert("Erreur lors de la récupération des données utilisateur" + err);
+    console.log("Erreur lors de la récupération des données utilisateur" + err);
   }
 };
 
