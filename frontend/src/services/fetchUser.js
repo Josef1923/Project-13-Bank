@@ -3,6 +3,7 @@ import { setUserData } from "../store/slice"; // Import Redux action
 async function fetchUser(dispatch, token) {
 
   if (!token) {
+    alert("Aucun token trouvé");
     return;
   }
 

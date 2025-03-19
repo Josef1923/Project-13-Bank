@@ -134,12 +134,8 @@ paths:
           description: Get user monthly transactions successfully
           schema:
             $ref: '#/definitions/Transactions'
-        '400':
-          description: Invalid request parameters
         '401':
           description: Unauthorized - Invalid or missing JWT token
-        '404':
-          description: No transactions found for the current month
         '500':
           description: Internal Server Error
   /transactions/{id}:
@@ -273,8 +269,7 @@ definitions:
   Transactions:
     type: array
     items:
-      $ref: '#/definitions/Transaction'
-      
+      $ref: '#/definitions/Transaction'      
   Transaction:
     type: object
     properties:
