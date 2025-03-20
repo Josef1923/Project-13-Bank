@@ -2,7 +2,7 @@ import  Authorization from "../../../services/authorization";
 import "./styles.css";
 
 function SignIn() {
-  //On récupère les données de la fonction Authorization
+  //On récupère les fonctions et les états nécessaires pour la connexion
   const { email, setEmail, password, setPassword, handleSubmit } = Authorization();
 
   return (
